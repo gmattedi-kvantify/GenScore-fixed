@@ -529,7 +529,7 @@ class GenScore(nn.Module):
 		C = self.MLP(C)
 		
 		# Get batch indexes for ligand-target combined features
-		C_batch = th.tensor(range(B)).unsqueeze(-1).unsqueeze(-1).to(device)
+		C_batch = th.tensor(range(B)).unsqueeze(-1).unsqueeze(-1).to(self.device)
 		C_batch = C_batch.repeat(1, N_l, N_t)[C_mask]
 		
  		# Outputs
