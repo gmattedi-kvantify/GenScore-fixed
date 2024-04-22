@@ -168,7 +168,11 @@ class VSDataset(Dataset):
 		else:
 			self.idsx = ids
 		
-		self.ids, self.gls = zip(*filter(lambda x: x[1] != None, zip(self.idsx, self.gls)))
+		# self.ids, self.gls = zip(*filter(lambda x: x[1] != None, zip(self.idsx, self.gls)))
+		for i, ligand_graph in enumerate(self.gls):
+		    if ligand_graph is None:
+		        raise ValueError(f"Graph generation failed for molecule {i}")
+		self.ids, self.gls = zip(self.idsx, self.gls)
 		self.ids = list(self.ids)
 		self.gls = Batch.from_data_list(self.gls)
 		assert len(self.ids) == self.gls.num_graphs
