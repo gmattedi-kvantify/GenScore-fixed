@@ -173,7 +173,7 @@ class VSDataset(Dataset):
 		    if ligand_graph is None:
 		        raise ValueError(f"Graph generation failed for molecule {i}")
 		# self.ids, self.gls = zip(self.idsx, self.gls)
-		self.ids = list(self.ids)
+		self.ids = list(self.idsx)
 		self.gls = Batch.from_data_list(self.gls)
 		assert len(self.ids) == self.gls.num_graphs
 		if self.labels is None:
